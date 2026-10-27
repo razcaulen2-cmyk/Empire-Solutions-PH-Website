@@ -13,6 +13,20 @@ test("the initial document shows a branded loading screen before the app starts"
   assert.doesNotMatch(html, /class="page-loading"/);
 });
 
+test("Netlify can detect the contact form and serve clean routes", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const netlifyConfig = await readFile(new URL("../netlify.toml", import.meta.url), "utf8");
+  const redirects = await readFile(new URL("../public/_redirects", import.meta.url), "utf8");
+
+  assert.match(html, /<form name="company-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>/);
+  for (const field of ["name", "email", "interest", "message", "bot-field"]) {
+    assert.match(html, new RegExp(`<input name="${field}"|<textarea name="${field}"`));
+  }
+  assert.match(netlifyConfig, /command = "npm run build"/);
+  assert.match(netlifyConfig, /publish = "dist"/);
+  assert.match(redirects, /^\/\* \/index\.html 200$/m);
+});
+
 test("every application route owns a separate page file", async () => {
   const app = await readFile(new URL("../src/app.js", import.meta.url), "utf8");
   const routes = [...app.matchAll(/\{ name: "([^"]+)", path: "([^"]+)", title: "[^"]+", markup: ([a-zA-Z]+) \}/g)];

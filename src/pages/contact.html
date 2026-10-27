@@ -14,7 +14,9 @@
           <a class="contact-detail" href="tel:+639567985007"><span class="contact-detail-label">CALL OR MESSAGE</span><strong>0956 798 5007</strong><span aria-hidden="true">↗</span></a>
           <div class="contact-hours"><span class="hours-icon" aria-hidden="true">☼</span><span>Based in the Philippines.<br><strong>Serving homes and businesses nationwide.</strong></span></div>
         </div>
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" id="contact-form" name="company-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="company-contact">
+          <div class="form-honeypot" aria-hidden="true"><label>Leave this field empty<input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
           <p class="eyebrow"><span class="eyebrow-dot"></span> TELL US A LITTLE ABOUT IT</p>
           <div class="form-pair">
             <label for="contact-name">Your name <span aria-hidden="true">*</span><input id="contact-name" name="name" autocomplete="name" required placeholder="e.g. Alex Santos"></label>
@@ -29,8 +31,8 @@
             </select>
           </label>
           <label for="contact-message">A little about your project <span aria-hidden="true">*</span><textarea id="contact-message" name="message" rows="5" required placeholder="Tell us what you have in mind..."></textarea></label>
-          <button class="button button-dark form-submit" type="submit">Prepare an email <span aria-hidden="true">↗</span></button>
-          <p class="form-note">This form opens a message in your email app; it doesn't send anything to a server.</p>
+          <button class="button button-dark form-submit" type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
+          <p class="form-note">Your enquiry will be sent to the Empire Solutions PH team.</p>
           <p class="form-status" id="contact-status" aria-live="polite"></p>
         </form>
       </div>

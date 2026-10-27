@@ -31,12 +31,30 @@ npm run preview
 `index.html` for the six application routes. The included Vite preview server
 provides this fallback for local verification.
 
-## Contact API integration
+## Deploy to Netlify
 
-The contact form uses the email-draft fallback until an API is configured. To
-connect a backend, copy `.env.example` to `.env.local`, set
-`VITE_API_BASE_URL` to the backend's base URL, then rebuild the site. The form
-submits a JSON `POST` to `/contact` containing `name`, `email`, `interest`, and
-`message`. The endpoint must allow requests from the deployed site through
-CORS. A successful 2xx response displays a confirmation; a failed request shows
-an error and the company's email address. No backend is included in this project.
+The site is configured for Netlify in `netlify.toml`. Connect the GitHub
+repository to Netlify and deploy the `main` branch. Netlify runs `npm run build`
+and publishes `dist/`; `public/_redirects` keeps the clean page routes working
+when visitors open or refresh them directly.
+
+The contact form uses **Netlify Forms** by default. A static form in `index.html`
+lets Netlify detect it during the build, while the visible form submits its
+entries securely over HTTPS. After the first deploy:
+
+1. In Netlify, open the site’s **Forms** settings and enable form detection if
+   prompted, then trigger a fresh deploy.
+2. Submit a test enquiry and confirm it appears in the `company-contact`
+   submissions list.
+3. Configure an email notification for form submissions addressed to
+   `info@empireph.com`.
+
+Netlify stores received submissions in the site dashboard; email delivery
+depends on the notification being configured. Review the account’s current
+submission limits and retention settings before going live.
+
+To use a separate contact API instead, copy `.env.example` to `.env.local` and
+set `VITE_API_BASE_URL` to the API's absolute HTTP(S) base URL. The site then
+sends a JSON `POST` to `/contact` containing `name`, `email`, `interest`, and
+`message`; the endpoint must allow requests from the deployed site through
+CORS.

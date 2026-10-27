@@ -23,9 +23,9 @@ export class ContactForm {
   }
 
   updateFormMode() {
-    if (!this.apiClient.isConfigured) return;
-
-    this.emailNote.textContent = "Your enquiry is sent securely to the Empire Solutions PH team.";
+    this.emailNote.textContent = this.apiClient.isConfigured
+      ? "Your enquiry is sent securely to the Empire Solutions PH team."
+      : "Your enquiry will be sent to the Empire Solutions PH team.";
     const button = this.form.querySelector("[type='submit']");
     if (button) button.firstChild.textContent = "Send enquiry ";
   }
@@ -34,19 +34,33 @@ export class ContactForm {
     event.preventDefault();
     if (!this.form.reportValidity()) return;
 
-    const data = Object.fromEntries(new FormData(this.form).entries());
-    if (!this.apiClient.isConfigured) {
-      this.prepareEmail(data);
-      return;
-    }
-
+    const formData = new (this.window.FormData ?? FormData)(this.form);
+    const data = Object.fromEntries(formData.entries());
     const button = this.form.querySelector("[type='submit']");
     if (button) button.disabled = true;
     this.status.textContent = "Sending your enquiry…";
     const { signal } = this.abortController;
 
     try {
-      await this.apiClient.request("/contact", { method: "POST", body: data, signal });
+      if (this.apiClient.isConfigured) {
+        const { name, email, interest, message } = data;
+        await this.apiClient.request("/contact", {
+          method: "POST",
+          body: { name, email, interest, message },
+          signal,
+        });
+      } else {
+        const response = await this.window.fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(data).toString(),
+          signal,
+        });
+        if (!response.ok) {
+          throw new Error(`The contact form service returned HTTP ${response.status}.`);
+        }
+      }
+
       if (signal.aborted) return;
       this.status.textContent = "Thank you. Your enquiry has been received.";
       this.form.reset();
@@ -57,20 +71,6 @@ export class ContactForm {
     } finally {
       if (button && !signal.aborted) button.disabled = false;
     }
-  }
-
-  prepareEmail(data) {
-    const subject = `Solar enquiry: ${data.interest}`;
-    const body = [
-      `Name: ${data.name}`,
-      `Email: ${data.email}`,
-      `Enquiry: ${data.interest}`,
-      "",
-      String(data.message),
-    ].join("\n");
-
-    this.status.textContent = "Your email draft is ready. If your email app didn't open, write to info@empireph.com.";
-    this.window.location.href = `mailto:info@empireph.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
   destroy() {
