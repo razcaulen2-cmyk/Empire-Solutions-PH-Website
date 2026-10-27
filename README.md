@@ -1,4 +1,7 @@
-# Empire Solutions PH website
+# Empire-Solutions-PH-Website
+
+A website dedicated to Empire Solutions PH. This project uses Vite to serve a
+multi-page company website with a shared responsive navigation shell.
 
 ## Requirements
 
