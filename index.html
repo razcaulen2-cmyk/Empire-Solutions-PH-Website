@@ -16,8 +16,6 @@
       place-items: center;
       overflow: hidden;
       background:
-        radial-gradient(ellipse at 82% 18%, rgba(255, 195, 0, .16), transparent 28%),
-        radial-gradient(ellipse at 14% 82%, rgba(255, 145, 77, .12), transparent 32%),
         #fffbe8;
       opacity: 1;
       transition: opacity .34s ease, visibility .34s ease;
@@ -38,12 +36,12 @@
     .startup-sun::before { position: absolute; inset: 9px; border: 1px solid rgba(255, 195, 0, .44); border-radius: inherit; content: ""; }
     .startup-sun::after { position: absolute; inset: -5px; border: 1px solid transparent; border-top-color: #ff914d; border-radius: inherit; animation: startup-orbit 1.6s linear infinite; content: ""; }
     .startup-sun span { width: 23px; height: 23px; border-radius: 50%; background: linear-gradient(135deg, #ffcf00, #ff914d); box-shadow: 0 0 30px rgba(255, 145, 77, .5); animation: startup-pulse 1.6s ease-in-out infinite; }
-    .startup-screen__wordmark { margin: 0; padding: 0 .16em .1em 0; overflow: visible; background: linear-gradient(110deg, #ff3131 15%, #ff914d 100%); background-clip: text; color: transparent; font-family: "Manrope", "Arial", sans-serif; font-size: clamp(32px, 6vw, 43px); font-style: italic; font-weight: 800; letter-spacing: -.035em; line-height: 1; }
-    .startup-screen__wordmark span { display: block; padding-top: 8px; color: #000814; font-family: "DM Sans", "Arial", sans-serif; font-size: 9px; font-style: normal; font-weight: 700; letter-spacing: .36em; }
+    .startup-screen__wordmark { margin: 0; padding: 0 .16em .1em 0; overflow: visible; color: #ff3131; font-family: "Garet Headline", "Arial", sans-serif; font-size: clamp(32px, 6vw, 43px); font-style: italic; font-weight: 700; letter-spacing: -.035em; line-height: 1; }
+    .startup-screen__wordmark span { display: block; padding-top: 8px; color: #000814; font-family: "Garet Regular", "Arial", sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: .36em; }
     .startup-screen__progress { position: relative; width: 154px; height: 2px; overflow: hidden; margin-top: 32px; border-radius: 2px; background: rgba(0, 8, 20, .1); }
     .startup-screen__progress span { position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, #ff3131, #ffc300); animation: startup-progress 1.2s ease-in-out infinite; }
-    .startup-screen__message { margin: 17px 0 0; color: #514b43; font-family: "DM Sans", "Arial", sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .02em; }
-    .startup-screen__tagline { margin: 36px 0 0; color: #8a8175; font-family: "DM Sans", "Arial", sans-serif; font-size: 8px; font-weight: 700; letter-spacing: .2em; }
+    .startup-screen__message { margin: 17px 0 0; color: #514b43; font-family: "Garet Book", "Arial", sans-serif; font-size: 12px; font-weight: 400; letter-spacing: .02em; }
+    .startup-screen__tagline { margin: 36px 0 0; color: #8a8175; font-family: "Garet Regular", "Arial", sans-serif; font-size: 8px; font-weight: 400; letter-spacing: .2em; }
     @keyframes startup-orbit { to { transform: rotate(360deg); } }
     @keyframes startup-pulse { 50% { transform: scale(.82); opacity: .7; } }
     @keyframes startup-progress { 0% { transform: translateX(-100%); } 55% { transform: translateX(0); } 100% { transform: translateX(100%); } }
