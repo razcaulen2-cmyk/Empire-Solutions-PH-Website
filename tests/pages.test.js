@@ -66,7 +66,9 @@ test("the homepage uses an immersive brand-colored Empire hero", async () => {
   assert.match(shell, /<span class="brand-wordmark-image" aria-hidden="true">[\s\S]*<img src="\/assets\/empire-solutions-ph\.png" alt="">/);
   assert.match(home, /<h1 id="home-title" class="hero-logo">[\s\S]*<img src="\/assets\/empire-solutions-ph-wordmark\.png" alt="Empire Solutions PH">[\s\S]*<\/h1>/);
   assert.match(stylesheet, /\.page-home \.hero h1\.hero-logo \{[\s\S]*width: min\(100%, 448px\);/);
-  assert.match(stylesheet, /\.brand-wordmark-image img \{[\s\S]*width: 230%;/);
+  assert.match(stylesheet, /\.brand \{[^}]*gap: 2px;/);
+  assert.match(stylesheet, /\.brand-wordmark-image \{[\s\S]*width: 104px;[\s\S]*aspect-ratio: 4 \/ 1;/);
+  assert.match(stylesheet, /\.brand-wordmark-image img \{[\s\S]*width: 210%;/);
   assert.match(stylesheet, /\.page-home \.hero h1\.hero-logo img \{[\s\S]*width: 100%;[\s\S]*height: auto;/);
   assert.match(stylesheet, /\.page-home \.hero::before \{[\s\S]*top: 0;[\s\S]*right: 0;[\s\S]*radial-gradient\(ellipse at top right/);
   assert.match(stylesheet, /\.page-home \.hero::after \{[\s\S]*right: 0;[\s\S]*bottom: 0;/);
@@ -90,6 +92,11 @@ test("the homepage uses an immersive brand-colored Empire hero", async () => {
   assert.match(thermalWave, /FFCF00[\s\S]*FF914D[\s\S]*FF3131/);
   assert.match(thermalWave, /feGaussianBlur stdDeviation="16"/);
   assert.match(stylesheet, /\.service-teaser,\s*\.featured-project-copy \{[\s\S]*background: linear-gradient\(135deg, rgba\(255, 255, 255, \.52\),[\s\S]*backdrop-filter: blur\(14px\) saturate\(135%\);/);
+  assert.match(stylesheet, /\.service-teaser::after,\s*\.featured-project-copy::after \{[\s\S]*radial-gradient\(circle,[\s\S]*mask-image: radial-gradient/);
+  assert.match(stylesheet, /\.service-teaser::after \{[^}]*inset: 198px 0 0;[\s\S]*width: auto;[\s\S]*height: auto;[\s\S]*border-radius: 0;[\s\S]*mask-image: linear-gradient\(to top left, #000, transparent 90%\)/);
+  assert.match(stylesheet, /\.service-teaser:hover::after,[\s\S]*\.featured-project-copy:focus-within::after \{[\s\S]*opacity: \.68;/);
+  assert.match(stylesheet, /\.service-teaser:hover,[\s\S]*\.service-teaser:focus-within \{[^}]*transform: translateY\(-8px\);/);
+  assert.match(stylesheet, /\.featured-project-copy:hover,[\s\S]*\.featured-project-copy:focus-within \{[\s\S]*transform: translateY\(-8px\);[\s\S]*box-shadow: var\(--shadow\);/);
   assert.match(stylesheet, /\.(?:home-services|featured-project) \{[^}]*background: transparent;/);
   assert.doesNotMatch(stylesheet, /\.(?:home-services|featured-project)::before\s*\{|\.home-panel-transition/);
   assert.doesNotMatch(home, /home-panel-transition/);
