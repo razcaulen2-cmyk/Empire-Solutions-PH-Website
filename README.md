@@ -14,8 +14,8 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. Each page has a clean URL: `/`, `/news`,
-`/services`, `/projects`, `/about`, and `/contact`. Use the site navigation to
+Open the local URL printed by Vite. Each page has a clean URL: `/`, `/services`,
+`/projects`, `/about`, and `/contact`. Use the site navigation to
 move between pages. Vite serves the application shell for direct navigation and
 browser refreshes on these routes.
 
@@ -28,7 +28,7 @@ npm run preview
 
 `npm run check` runs the automated tests and creates a production build in
 `dist/`. Deploy the contents of `dist/` to a static host configured to serve
-`index.html` for the six application routes. The included Vite preview server
+`index.html` for the five application routes. The included Vite preview server
 provides this fallback for local verification.
 
 ## Deploy to Netlify

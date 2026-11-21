@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="left-colors" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFCF00" stop-opacity=".82"/>
+      <stop offset=".18" stop-color="#FF914D" stop-opacity=".9"/>
+      <stop offset=".34" stop-color="#FF3131" stop-opacity=".78"/>
+      <stop offset=".5" stop-color="#FF914D" stop-opacity=".86"/>
+      <stop offset=".66" stop-color="#FFCF00" stop-opacity=".9"/>
+      <stop offset=".82" stop-color="#FF914D" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#FF3131" stop-opacity=".68"/>
+    </linearGradient>
+    <linearGradient id="right-colors" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FF914D" stop-opacity=".76"/>
+      <stop offset=".16" stop-color="#FFCF00" stop-opacity=".9"/>
+      <stop offset=".34" stop-color="#FF914D" stop-opacity=".86"/>
+      <stop offset=".52" stop-color="#FF3131" stop-opacity=".76"/>
+      <stop offset=".68" stop-color="#FF914D" stop-opacity=".84"/>
+      <stop offset=".84" stop-color="#FFCF00" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#FF914D" stop-opacity=".68"/>
+    </linearGradient>
+    <linearGradient id="fade-left" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="125" y2="0">
+      <stop offset="0" stop-color="white" stop-opacity=".94"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fade-right" gradientUnits="userSpaceOnUse" x1="1000" y1="0" x2="875" y2="0">
+      <stop offset="0" stop-color="white" stop-opacity=".94"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="left-fade" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0" width="1000" height="1000">
+      <rect width="1000" height="1000" fill="url(#fade-left)"/>
+    </mask>
+    <mask id="right-fade" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0" width="1000" height="1000">
+      <rect width="1000" height="1000" fill="url(#fade-right)"/>
+    </mask>
+    <filter id="soft-edge" filterUnits="userSpaceOnUse" x="-100" y="-60" width="1200" height="1120">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+  </defs>
+  <g filter="url(#soft-edge)">
+    <path
+      d="M0 0H142C77 77 129 148 72 224C20 294 42 356 103 421C164 486 120 555 47 621C-12 674 34 738 101 800C157 853 111 933 0 1000Z"
+      fill="url(#left-colors)"
+      mask="url(#left-fade)"
+      transform="scale(.5 1)"
+    />
+    <path
+      d="M1000 0H858C923 77 871 148 928 224C980 294 958 356 897 421C836 486 880 555 953 621C1012 674 966 738 899 800C843 853 889 933 1000 1000Z"
+      fill="url(#right-colors)"
+      mask="url(#right-fade)"
+      transform="translate(500 0) scale(.5 1)"
+    />
+  </g>
+</svg>

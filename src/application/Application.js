@@ -1,7 +1,6 @@
 import { ApiClient } from "../services/ApiClient.js";
-import { ArticleDialog } from "../ui/ArticleDialog.js";
 import { ContactForm } from "../ui/ContactForm.js";
-import { CursorSun } from "../ui/CursorSun.js";
+import { HomeParallax } from "../ui/HomeParallax.js";
 import { PageAnimator } from "../ui/PageAnimator.js";
 import { ProjectGallery } from "../ui/ProjectGallery.js";
 import { SiteShell } from "../ui/SiteShell.js";
@@ -15,10 +14,6 @@ export class Application {
     this.apiClient = new ApiClient({ baseUrl: apiBaseUrl });
     this.pageView = new PageView(this.getOutlet());
     this.animator = new PageAnimator();
-    this.cursorSun = new CursorSun({
-      documentRef: this.document,
-      windowRef: this.window,
-    });
     this.siteShell = new SiteShell(this.document);
     this.pageControllers = [];
     this.router = new AppRouter({
@@ -33,7 +28,6 @@ export class Application {
 
   start() {
     this.siteShell.mount();
-    this.cursorSun.mount();
     this.router.start();
     this.dismissStartupScreen();
   }
@@ -63,8 +57,10 @@ export class Application {
     this.animator.observe(page);
     this.pageControllers = [];
 
-    if (route.name === "news") {
-      this.pageControllers.push(new ArticleDialog(this.document).mount(page));
+    if (route.name === "home") {
+      this.pageControllers.push(new HomeParallax({
+        windowRef: this.window,
+      }).mount(page));
     }
 
     if (route.name === "projects") {
@@ -89,7 +85,5 @@ export class Application {
 
   closeMenu() {
     this.siteShell.closeMenu();
-    const dialog = this.document.querySelector("#article-dialog");
-    if (dialog?.open) dialog.close();
   }
 }

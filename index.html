@@ -16,20 +16,34 @@
       place-items: center;
       overflow: hidden;
       background:
-        #fffbe8;
+        radial-gradient(ellipse at 82% 18%, rgba(255, 195, 0, .12), transparent 24%),
+        linear-gradient(135deg, #ffffff, #fffbe8);
       opacity: 1;
       transition: opacity .34s ease, visibility .34s ease;
     }
     .startup-screen::before, .startup-screen::after {
       position: absolute;
-      width: min(74vw, 660px);
-      height: min(74vw, 660px);
-      border: 1px solid rgba(255, 145, 77, .12);
-      border-radius: 50%;
       content: "";
       pointer-events: none;
     }
-    .startup-screen::after { width: min(58vw, 510px); height: min(58vw, 510px); border-color: rgba(255, 195, 0, .18); }
+    .startup-screen::before {
+      top: 0;
+      right: 0;
+      width: min(42vw, 360px);
+      height: min(42vw, 360px);
+      background-image: radial-gradient(circle, rgba(255, 195, 0, .68) 1.2px, transparent 1.8px);
+      background-size: 10px 10px;
+      mask-image: radial-gradient(ellipse at top right, #000 0, transparent 76%);
+      opacity: .52;
+    }
+    .startup-screen::after {
+      right: 8%;
+      bottom: 8%;
+      width: min(32vw, 260px);
+      height: min(24vw, 190px);
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255, 145, 77, .10), transparent 72%);
+    }
     .startup-screen.is-exiting { visibility: hidden; opacity: 0; pointer-events: none; }
     .startup-screen__content { position: relative; z-index: 1; display: grid; justify-items: center; gap: 0; padding: 24px; text-align: center; }
     .startup-sun { position: relative; display: grid; width: 82px; height: 82px; place-items: center; margin-bottom: 27px; border: 1px solid rgba(255, 145, 77, .25); border-radius: 50%; }
@@ -75,7 +89,9 @@
   <header class="site-header">
     <a class="brand" href="/" data-route="home" aria-label="Empire Solutions PH home">
       <img class="brand-mark" src="/assets/empire-mark.png" alt="">
-      <span class="brand-wordmark">EMPIRE<span>SOLUTIONS PH</span></span>
+      <span class="brand-wordmark-image" aria-hidden="true">
+        <img src="/assets/empire-solutions-ph.png" alt="">
+      </span>
     </a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open menu">
@@ -84,7 +100,6 @@
 
     <nav class="primary-navigation" id="primary-navigation" aria-label="Main navigation">
       <a href="/" data-route="home" aria-current="page">Home</a>
-      <a href="/news" data-route="news">News &amp; Blogs</a>
       <a href="/services" data-route="services">Our Services</a>
       <a href="/projects" data-route="projects">Our Projects</a>
       <a href="/about" data-route="about">About Us</a>
@@ -103,20 +118,6 @@
       <a href="/" data-route="home">BACK TO TOP ↑</a>
     </div>
   </footer>
-
-  <dialog class="article-dialog" id="article-dialog" aria-labelledby="dialog-title">
-    <div class="dialog-top">
-      <span class="eyebrow"><span class="eyebrow-dot"></span> EMPIRE JOURNAL</span>
-      <button class="dialog-close" type="button" data-close-dialog aria-label="Close article">Close <span aria-hidden="true">×</span></button>
-    </div>
-    <div class="dialog-content">
-      <p class="dialog-kicker" id="dialog-kicker"></p>
-      <h2 id="dialog-title"></h2>
-      <p id="dialog-body"></p>
-      <a class="text-link" href="/contact" data-route="contact">Ask us a question <span aria-hidden="true">↗</span></a>
-    </div>
-    <div class="dialog-footer"><span>EMPIRE SOLUTIONS PH</span><span>WHERE SUSTAINABILITY IS KING.</span></div>
-  </dialog>
 
   <script type="module" src="/src/app.js"></script>
 </body>
