@@ -57,6 +57,7 @@ test("the homepage uses an immersive brand-colored Empire hero", async () => {
   const stylesheet = await readFile(new URL("../src/styles/main.css", import.meta.url), "utf8");
   const home = await readFile(new URL("../src/pages/home.html", import.meta.url), "utf8");
   const animator = await readFile(new URL("../src/ui/PageAnimator.js", import.meta.url), "utf8");
+  const thermalContours = await readFile(new URL("../public/assets/thermal-contours.svg", import.meta.url), "utf8");
   const thermalWave = await readFile(new URL("../public/assets/thermal-wave.svg", import.meta.url), "utf8");
 
   assert.match(stylesheet, /body:has\(\.page-home\) \.site-header \{[\s\S]*position: absolute;/);
@@ -81,13 +82,14 @@ test("the homepage uses an immersive brand-colored Empire hero", async () => {
   assert.match(stylesheet, /\.page-home \.hero-lead \{[\s\S]*font-size: 16px;[\s\S]*line-height: 1\.7;/);
   assert.match(stylesheet, /\.page-home \.service-teaser p[\s\S]*font-size: 15px;/);
   assert.match(home, /<div class="home-panels">[\s\S]*<section class="home-services[\s\S]*<section class="featured-project/);
-  assert.match(stylesheet, /\.home-panels \{[\s\S]*background: var\(--white\);[\s\S]*\.home-panels::before \{[\s\S]*url\("\/assets\/thermal-wave\.svg"\)/);
+  assert.match(stylesheet, /\.home-panels \{[\s\S]*background: var\(--white\);[\s\S]*\.home-panels::before \{[\s\S]*url\("\/assets\/thermal-contours\.svg"\) center \/ 100% 100% no-repeat,[\s\S]*radial-gradient\(ellipse at 42% 42%,[\s\S]*linear-gradient\(120deg,[\s\S]*url\("\/assets\/thermal-wave\.svg"\) center \/ 100% 100% no-repeat;/);
+  assert.match(thermalContours, /viewBox="0 0 1600 1200"/);
+  assert.match(thermalContours, /<g fill="none" stroke="#FFFFFF" stroke-opacity=".7" stroke-width="2\.2"/);
+  assert.match(thermalContours, /<g fill="none" stroke="#FFFFFF" stroke-opacity=".52" stroke-width="1\.5"/);
+  assert.doesNotMatch(thermalContours, /contour-flow|contour-loop/);
   assert.match(thermalWave, /viewBox="0 0 1000 1000"/);
   assert.match(thermalWave, /FFCF00[\s\S]*FF914D[\s\S]*FF3131/);
-  assert.match(thermalWave, /C77 77 129 148 72 224/);
-  assert.doesNotMatch(thermalWave, /stroke=/);
   assert.match(thermalWave, /feGaussianBlur stdDeviation="16"/);
-  assert.match(thermalWave, /gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="125" y2="0"/);
   assert.match(stylesheet, /\.(?:home-services|featured-project) \{[^}]*background: transparent;/);
   assert.doesNotMatch(stylesheet, /\.(?:home-services|featured-project)::before\s*\{|\.home-panel-transition/);
   assert.doesNotMatch(home, /home-panel-transition/);
