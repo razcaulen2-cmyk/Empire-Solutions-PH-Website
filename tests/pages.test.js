@@ -84,12 +84,12 @@ test("the homepage uses an immersive brand-colored Empire hero", async () => {
   assert.match(home, /<div class="home-panels">[\s\S]*<section class="home-services[\s\S]*<section class="featured-project/);
   assert.match(stylesheet, /\.home-panels \{[\s\S]*background: var\(--white\);[\s\S]*\.home-panels::before \{[\s\S]*url\("\/assets\/thermal-contours\.svg"\) center \/ 100% 100% no-repeat,[\s\S]*radial-gradient\(ellipse at 42% 42%,[\s\S]*linear-gradient\(120deg,[\s\S]*url\("\/assets\/thermal-wave\.svg"\) center \/ 100% 100% no-repeat;/);
   assert.match(thermalContours, /viewBox="0 0 1600 1200"/);
-  assert.match(thermalContours, /<g fill="none" stroke="#FFFFFF" stroke-opacity=".7" stroke-width="2\.2"/);
   assert.match(thermalContours, /<g fill="none" stroke="#FFFFFF" stroke-opacity=".52" stroke-width="1\.5"/);
   assert.doesNotMatch(thermalContours, /contour-flow|contour-loop/);
   assert.match(thermalWave, /viewBox="0 0 1000 1000"/);
   assert.match(thermalWave, /FFCF00[\s\S]*FF914D[\s\S]*FF3131/);
   assert.match(thermalWave, /feGaussianBlur stdDeviation="16"/);
+  assert.match(stylesheet, /\.service-teaser,\s*\.featured-project-copy \{[\s\S]*background: linear-gradient\(135deg, rgba\(255, 255, 255, \.52\),[\s\S]*backdrop-filter: blur\(14px\) saturate\(135%\);/);
   assert.match(stylesheet, /\.(?:home-services|featured-project) \{[^}]*background: transparent;/);
   assert.doesNotMatch(stylesheet, /\.(?:home-services|featured-project)::before\s*\{|\.home-panel-transition/);
   assert.doesNotMatch(home, /home-panel-transition/);

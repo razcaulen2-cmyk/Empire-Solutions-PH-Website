@@ -644,6 +644,14 @@ h3, h4 {
 .home-services > *,
 .featured-project > * { position: relative; z-index: 2; }
 .service-teaser-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 44px; }
+.service-teaser,
+.featured-project-copy {
+  border: 1px solid rgba(255, 255, 255, .82);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .52), rgba(255, 255, 255, .24) 52%, rgba(255, 255, 255, .34));
+  backdrop-filter: blur(14px) saturate(135%);
+  box-shadow: 0 18px 45px rgba(0, 8, 20, .14), inset 0 1px 0 rgba(255, 255, 255, .9), inset 1px 0 0 rgba(255, 255, 255, .34);
+}
 .service-teaser {
   position: relative;
   display: flex;
@@ -651,12 +659,10 @@ h3, h4 {
   flex-direction: column;
   overflow: hidden;
   padding: 0 22px 22px;
-  border: 1px solid var(--line);
-  background: var(--white);
   transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s ease;
 }
-.service-teaser:hover { transform: translateY(-8px); border-color: rgba(255, 145, 77, .55); box-shadow: var(--shadow); }
-.service-teaser-feature { background: var(--cream); }
+.service-teaser:hover { transform: translateY(-8px); border-color: rgba(255, 255, 255, .96); box-shadow: var(--shadow); }
+.service-teaser-feature { background: linear-gradient(135deg, rgba(255, 251, 232, .56), rgba(255, 251, 232, .24) 58%, rgba(255, 255, 255, .32)); }
 .service-teaser-image { height: 180px; margin: 0 -22px 18px; overflow: hidden; }
 .service-teaser-image img { height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
 .service-teaser:hover .service-teaser-image img { transform: scale(1.07); }
@@ -686,23 +692,38 @@ h3, h4 {
   isolation: isolate;
   display: grid;
   min-height: 460px;
-  grid-template-columns: 1.15fr .85fr;
+  grid-template-columns: 1.1fr .9fr;
   align-items: center;
-  gap: clamp(40px, 7vw, 90px);
+  gap: clamp(24px, 3.5vw, 48px);
   overflow: hidden;
   padding-top: 55px;
   padding-bottom: 55px;
   background: transparent;
 }
-.featured-project-image { position: relative; height: 350px; overflow: hidden; border-radius: 2px 55% 2px 2px; }
+.featured-project-image {
+  position: relative;
+  height: 350px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .72);
+  border-radius: 20px;
+  box-shadow: 0 18px 42px rgba(0, 8, 20, .14);
+}
 .featured-project-image img { height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
 .featured-project-image:hover img { transform: scale(1.05); }
 .image-stamp { position: absolute; right: 14px; bottom: 14px; padding: 9px 11px; background: var(--yellow); font-size: 8px; letter-spacing: .1em; }
-.featured-project-copy { display: flex; align-items: flex-start; flex-direction: column; }
-.featured-project-copy .eyebrow { margin-bottom: 16px; }
-.featured-project-copy > p:not(.eyebrow) { max-width: 400px; margin: 14px 0 18px; color: var(--muted); }
+.featured-project-copy {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: clamp(18px, 1.6vw, 24px);
+}
+.featured-project-copy h2 { font-size: clamp(34px, 3.2vw, 44px); line-height: 1; }
+.featured-project-copy .eyebrow { margin-bottom: 12px; }
+.featured-project-copy > p:not(.eyebrow) { max-width: 400px; margin: 8px 0 12px; color: var(--muted); }
+.featured-project-copy .project-specs { margin-bottom: 12px; }
 .project-specs { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
 .project-specs span { padding: 7px 9px; border: 1px solid var(--line); background: var(--white); font-size: 9px; }
+.featured-project-copy .spec-note { margin-top: 7px; }
 .spec-note { margin-top: 11px; color: #777166; font-size: 8px; }
 
 .home-story {
@@ -1047,7 +1068,7 @@ h3, h4 {
   .service-teaser { min-height: 400px; }
 
   .featured-project { grid-template-columns: 1fr; gap: 28px; padding-top: 38px; padding-bottom: 42px; }
-  .featured-project-image { height: 280px; }
+  .featured-project-image { height: 280px; min-height: 0; align-self: auto; }
   .featured-project-copy h2 { font-size: 44px; }
   .home-story { grid-template-columns: 1fr 44px; min-height: 300px; gap: 20px 12px; }
   .home-story-note { grid-column: 1 / -1; flex-direction: row; align-items: center; }
